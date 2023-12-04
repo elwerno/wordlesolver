@@ -1,7 +1,9 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
-SRC_DIR = src
 BUILD_DIR = build
+PYTHON = python3
+SCRIPTS_DIR = scripts
+SRC_DIR = src
 TARGET = wordlesolver
 
 SRCS = $(wildcard $(SRC_DIR)/*.c)
@@ -13,6 +15,10 @@ $(TARGET): $(OBJS)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c -o $@ $<
+
+.PHONY: database
+database:
+	$(PYTHON) $(SCRIPTS_DIR)/wordsParser.py
 
 .PHONY: clean
 clean:
